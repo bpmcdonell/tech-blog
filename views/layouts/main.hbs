@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../public/css/style.css">
+    <title>Tech Blog</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Tech Blog</h1>
+        {{#if loggedIn}}
+        <div>
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+        {{else}}
+        <div>
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+            <a href="/signup">Signup</a>
+        </div>
+        {{/if}}
+    </header>
+
+    <main>
+        <div>
+            {{#if loggedIn}}
+            <h2>Welcome {{username}}!</h2>
+            <a href="/new">Create a New Post</a>
+            {{else}}
+            <h2>Welcome to Tech Blog!</h2>
+            {{/if}}
+        </div>
+        <div class="posts">
+            {{{body}}}
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2021 Tech Blog</p>
+    </footer>
+
+</body>
+
+</html>
