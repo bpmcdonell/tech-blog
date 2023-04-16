@@ -4,12 +4,12 @@ const Post = require('../../models/Post');
 const Comment = require('../../models/Comment');
 const Auth = require('../../utils/auth');
 
-router.post('/:id', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const commentData = await Comment.create({
             body: req.body.body,
             user_id: req.session.user_id,
-            post_id: req.params.id,
+            post_id: req.body.post_id,
             date: new Date()
         });
 

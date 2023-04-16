@@ -17,7 +17,7 @@
         <div>
             <a href="/">Home</a>
             <a href="/dashboard">Dashboard</a>
-            <a href="/logout">Logout</a>
+            <button id="logoutButton">Logout</button>
         </div>
         {{else}}
         <div>
@@ -43,8 +43,12 @@
     </main>
 
     <footer>
-        <p>© 2021 Tech Blog</p>
+        <p>© 2023 Tech Blog</p>
     </footer>
+
+    {{#if loggedIn}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
 
 </body>
 

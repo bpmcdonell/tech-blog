@@ -1,0 +1,33 @@
+<h2>{{title}}</h2>
+<p>{{body}}</p>
+<p>Posted by {{User.username}} on {{date}}</p>
+
+<div class="comments">
+    <p>Comments:</p>
+    {{#each Comments as |comment|}}
+    {{#if comment}}
+    {{> comment}}
+    {{/if}}
+    {{/each}}
+    <div id="addCommentSection">
+        {{#if loggedIn}}
+        <button id="commentButton">Add Comment</button>
+        {{/if}}
+    </div>
+
+</div>
+<a href="/dashboard">← Back to Dashboard</a>
+{{#if loggedIn}}
+{{#if (compare lvalue=User.username rvalue=username options="==")}}
+<a href="/edit/{{id}}">Edit Post</a>
+<button id="postDelete">Delete Post</button>
+{{/if}}
+{{/if}}
+
+<script src="/js/single.js"></script>
+{{#if loggedIn}}
+{{#if (compare lvalue=User.username rvalue=username options="==")}}
+<script src="/js/delete.js"></script>
+{{/if}}
+{{/if}}
+</div>

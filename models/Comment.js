@@ -20,17 +20,17 @@ Comment.init(
             allowNull: true,
             defaultValue: DataTypes.NOW,
         },
-        comment_id: {
+        post_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'post',
+                model: 'Post',
                 key: 'id',
             },
         },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'user',
+                model: 'User',
                 key: 'id',
             },
         },
@@ -40,7 +40,7 @@ Comment.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'comment',
+        modelName: 'Comment',
     }
 );
 

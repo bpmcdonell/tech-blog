@@ -1,15 +1,18 @@
-var username = document.querySelector('#username');
-var password = document.querySelector('#password');
-var submit = document.querySelector('#submit');
 
-submit.addEventListener('click', function (e) {
+
+console.log('login js loaded');
+
+const loginEvent = async (e) => {
     e.preventDefault();
+    var username = document.querySelector('#username');
+    var password = document.querySelector('#password');
+
     var data = {
         username: username.value,
         password: password.value,
     };
     console.log(data);
-    fetch('/api/login', {
+    fetch('/api/users/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -24,5 +27,7 @@ submit.addEventListener('click', function (e) {
         .catch((error) => {
             console.error('Error:', error);
         });
-});
+};
+
+document.querySelector('#login').addEventListener('click', loginEvent);
 

@@ -3,13 +3,15 @@ const User = require('../../models/User');
 const Post = require('../../models/Post');
 
 router.post('/newPost', async (req, res) => {
+    console.log(req.body)
     try {
         const postData = await Post.create({
             title: req.body.title,
-            body: req.body.content,
+            body: req.body.body,
             date: new Date(),
             user_id: req.session.user_id
         });
+
         res.render('dashboard', {
             loggedIn: req.session.loggedIn,
         });
@@ -39,17 +41,17 @@ router.delete('/deletepost/:id', async (req, res) => {
     }
 });
 
-router.put('/editpost/:id', async (req, res) => {
+router.put('/editpost', async (req, res) => {
     try {
         const postData = await Post.update(
             {
                 title: req.body.title,
-                body: req.body.body,
+                body: req.body.postBody,
                 date: new Date()
             },
             {
                 where: {
-                    id: req.params.id,
+                    id: req.body.id,
                 },
             }
         );
@@ -59,9 +61,7 @@ router.put('/editpost/:id', async (req, res) => {
             return;
         }
 
-        res.render('dashboard', {
-            loggedIn: req.session.loggedIn,
-        });
+        res.status(200).json(postData);
 
     } catch (err) {
         res.status(500).json(err);

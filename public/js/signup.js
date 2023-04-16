@@ -1,16 +1,15 @@
 var username = document.querySelector('#username');
 var password = document.querySelector('#password');
-var submit = document.querySelector('#submit');
 
 console.log("signup.js loaded")
-submit.addEventListener('click', function (e) {
+const signupEvent = async (e) => {
     e.preventDefault();
     var data = {
         username: username.value,
         password: password.value,
     };
     console.log(data);
-    fetch('/api/signup', {
+    fetch('/api/users/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -20,9 +19,12 @@ submit.addEventListener('click', function (e) {
         .then((response) => response.json())
         .then((data) => {
             console.log('Success:', data);
+            document.location.replace('/dashboard');
 
         })
         .catch((error) => {
             console.error('Error:', error);
         });
-});
+};
+
+document.querySelector('#signupButton').addEventListener('click', signupEvent);

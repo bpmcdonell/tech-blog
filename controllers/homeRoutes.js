@@ -12,8 +12,8 @@ router.get('/', async (req, res) => {
                 {
                     model: User,
                     attributes: ['username'],
-                    
-                },
+
+                }
             ],
         });
 
@@ -22,6 +22,7 @@ router.get('/', async (req, res) => {
         res.render('home', {
             posts,
             loggedIn: req.session.loggedIn,
+            username: req.session.username,
         });
     } catch (err) {
         res.status(500).json(err);
@@ -52,6 +53,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
         res.render('dashboard', {
             posts,
             loggedIn: req.session.loggedIn,
+            username: req.session.username,
         });
     } catch (err) {
         res.status(500).json(err);
@@ -87,14 +89,23 @@ router.get('/post/:id', async (req, res) => {
                     model: User,
                     attributes: ['username'],
                 },
+                {
+                    model: Comment,
+                    attributes: ['body', 'date', 'user_id'],
+                    include: {
+                        model: User,
+                        attributes: ['username'],
+                    },
+                },
             ],
         });
 
         const post = postData.get({ plain: true });
-
+        console.log("SINGLE POST --------------------------------------------", post)
         res.render('singlePost', {
             ...post,
             loggedIn: req.session.loggedIn,
+            username: req.session.username,
         });
     } catch (err) {
         res.status(500).json(err);

@@ -1,0 +1,12 @@
+<div>
+    <p>{{body}}</p>
+    <p>Posted by {{User.username}} on {{date}}</p>
+    {{#if loggedIn}}
+    {{#if (compare lvalue=User.username rvalue=username options="==")}}
+    <button id="editButton">Edit Comment</button>
+    <button id="deleteButton">Delete Comment</button>
+    <script src="/js/delete.js"></script>
+    <script src="/js/edit.js"></script>
+    {{/if}}
+    {{/if}}
+</div>

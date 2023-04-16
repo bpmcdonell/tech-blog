@@ -2,7 +2,8 @@
     <h2>{{username}}'s Dashboard</h2>
     <div class="posts">
         {{#each posts as |post|}}
-            {{#if post}}
-                {{> post}}
-            {{/if}}
-</div>
+        {{#if post}}
+        {{> post}}
+        {{/if}}
+        {{/each}}
+    </div>
