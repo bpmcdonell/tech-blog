@@ -34,6 +34,3 @@ document.querySelector('.postDelete').addEventListener('click', function (e) {
         .catch(err => console.log(err));
 });
 
-
-// Path: public\js\edit.js
-

@@ -1,19 +1,23 @@
-<h2>{{title}}</h2>
-<p>{{body}}</p>
-<p>Posted by {{User.username}} on {{date}}</p>
-
+<div class="card">
+    <h3>{{title}}</h3>
+    <p>{{body}}</p>
+    <p>Posted by {{User.username}} on {{date}}</p>
+</div>
 <div class="comments">
-    <p>Comments:</p>
+    <h4>Comments:</h4>
     {{#each Comments as |comment|}}
     {{#if comment}}
-    {{> comment}}
+    {{> comment comment=comment User=User username=username loggedIn=loggedIn}}
     {{/if}}
+
     {{/each}}
+
     <div id="addCommentSection">
         {{#if loggedIn}}
         <button id="commentButton">Add Comment</button>
         {{/if}}
     </div>
+
 
 </div>
 <a href="/dashboard">← Back to Dashboard</a>
